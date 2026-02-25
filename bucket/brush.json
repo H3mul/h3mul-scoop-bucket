@@ -12,25 +12,6 @@
       "Brush"
     ]
   ],
-  "installer": {
-    "script": [
-      "$appdata = $env:APPDATA",
-      "$brushDir = \"$appdata\\Brush\"",
-      "if (-Not (Test-Path $brushDir)) {",
-      "  New-Item -ItemType Directory -Path $brushDir -Force | Out-Null",
-      "}",
-      "Copy-Item -Path \"$dir\\*\" -Destination $brushDir -Recurse -Force"
-    ]
-  },
-  "uninstaller": {
-    "script": [
-      "$appdata = $env:APPDATA",
-      "$brushDir = \"$appdata\\Brush\"",
-      "if (Test-Path $brushDir) {",
-      "  Remove-Item -Path $brushDir -Recurse -Force",
-      "}"
-    ]
-  },
   "checkver": {
     "github": "ArthurBrussee/brush",
     "regex": "v([\\d.]+)"
