@@ -1,15 +1,20 @@
 {
-  "version": "2026.02.25-eda4637",
+  "version": "2026-02-26-38872bd",
   "description": "Run COLMAP prep for gaussian splat generation on a directory of images",
   "homepage": "https://github.com/h3mul/video-to-gaussian-splat",
   "license": "MIT",
-  "url": "https://raw.githubusercontent.com/H3mul/video-to-gaussian-splat/main/run_colmap.py",
+  "url": "https://raw.githubusercontent.com/H3mul/video-to-gaussian-splat/38872bd/run_colmap.py",
   "bin": "run_colmap.py",
   "checkver": {
-        "url": "https://github.com/user/repo/commits/main.atom",
-        "regex": "(?s)(\\d{4}-\\d{2}-\\d{2}).*?commit/([a-z0-9]{7})"
+    "url": "https://api.github.com/repos/H3mul/video-to-gaussian-splat/commits/main",
+    "regex": "\"sha\":\"([a-fA-F0-9]{7})[a-fA-F0-9]{33}\".{0,2000}\"date\":\"([\\d-]+)",
+    "replace": "$2-$1"
   },
   "autoupdate": {
-    "url": "https://raw.githubusercontent.com/H3mul/video-to-gaussian-splat/main/run_colmap.py"
+    "url": "https://raw.githubusercontent.com/H3mul/video-to-gaussian-splat/$1/run_colmap.py",
+    "hash": {
+      "mode": "download"
+    },
+    "version": "$2-$1"
   }
 }
