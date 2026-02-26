@@ -1,9 +1,9 @@
 {
-  "version": "2026-02-26-38872bd",
+  "version": "2026-02-26-b3352bb",
   "description": "Run COLMAP prep for gaussian splat generation on a directory of images",
   "homepage": "https://github.com/h3mul/video-to-gaussian-splat",
   "license": "MIT",
-  "url": "https://raw.githubusercontent.com/H3mul/video-to-gaussian-splat/38872bd/run_colmap.py",
+  "url": "https://raw.githubusercontent.com/H3mul/video-to-gaussian-splat/b3352bb/run_colmap.py",
   "bin": "run_colmap.py",
   "checkver": {
     "url": "https://api.github.com/repos/H3mul/video-to-gaussian-splat/commits/main",
