@@ -8,6 +8,7 @@
     "colmap",
     "glomap",
     "brush",
+    "nerfstudio",
     "task"
   ],
   "url": "https://github.com/h3mul/video-to-gaussian-splat/archive/refs/heads/main.zip#/video-to-gaussian-splat-main.zip",
