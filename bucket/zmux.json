@@ -1,0 +1,36 @@
+{
+  "version": "0.1.0",
+  "description": "A small GPUI terminal workspace built on Zed's terminal and terminal_view crates",
+  "homepage": "https://github.com/thinkter/zmux",
+  "license": "GPL-3.0-or-later",
+  "depends": [
+    "7zip",
+    "rust"
+  ],
+  "url": "https://github.com/thinkter/zmux/archive/refs/tags/v0.1.0.tar.gz#/zmux-0.1.0.tar.gz",
+  "extract_dir": "zmux-0.1.0",
+  "bin": "target/release/zmux.exe",
+  "checkver": {
+    "github": "thinkter/zmux"
+  },
+  "autoupdate": {
+    "url": "https://github.com/thinkter/zmux/archive/refs/tags/v$version.tar.gz#/zmux-$version.tar.gz",
+    "extract_dir": "zmux-$version"
+  },
+  "pre_install": [
+    "if (-not (scoop config 7ZIPEXTRACT_USE_EXTERNAL)) {",
+    "    error 'This package requires external 7-Zip extraction to safely handle parent-directory symlinks.'",
+    "    error 'Please run: scoop config 7ZIPEXTRACT_USE_EXTERNAL true'",
+    "    error 'Then try installing this package again.'",
+    "    exit 1",
+    "  }"
+  ],
+  "post_install": [
+    "cd \"$dir\"",
+    "cargo run --release -- notify \"Build complete\""
+  ],
+  "notes": [
+    "Requires Rust/Cargo and may require Visual Studio C++ build tools.",
+    "Installation compiles zmux from source and may take several minutes."
+  ]
+}
