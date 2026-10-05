@@ -1,0 +1,47 @@
+{
+  "version": "2.0.5",
+  "description": "Cate - an infinite zoomable canvas IDE (built from source, h3mul fork)",
+  "homepage": "https://github.com/h3mul/cate",
+  "license": "MIT",
+  "depends": [
+    "git",
+    "versions/nodejs22"
+  ],
+  "url": "https://github.com/h3mul/cate/archive/refs/heads/main.zip#/cate-main.zip",
+  "extract_dir": "cate-main",
+  "checkver": {
+    "url": "https://github.com/h3mul/cate/commits/main.atom",
+    "regex": "(?s)<id>.*?Commit/(?<sha>[0-9a-f]+)</id>"
+  },
+  "autoupdate": {
+    "url": "https://github.com/h3mul/cate/archive/$matchSha.zip#/cate-$matchSha.zip",
+    "extract_dir": "cate-$matchSha"
+  },
+  "installer": {
+    "script": [
+      "$env:CSC_IDENTITY_AUTO_DISCOVERY = 'false'",
+      "Push-Location $dir",
+      "npm ci; if ($LASTEXITCODE) { throw 'npm ci failed' }",
+      "Get-ChildItem node_modules\\node-pty -Recurse -Include *.gyp,*.gypi | ForEach-Object { (Get-Content $_ -Raw) -replace \"'SpectreMitigation':\\s*'Spectre'\", \"'SpectreMitigation': 'false'\" | Set-Content $_ -NoNewline }",
+      "npm run runtime:tarball; if ($LASTEXITCODE) { throw 'runtime:tarball failed' }",
+      "node scripts/package.mjs --win --dir; if ($LASTEXITCODE) { throw 'package failed' }",
+      "Move-Item \"$dir\\release\\win-unpacked\" \"$env:TEMP\\cate-app\" -Force",
+      "Pop-Location",
+      "Get-ChildItem $dir -Force | Remove-Item -Recurse -Force",
+      "Move-Item \"$env:TEMP\\cate-app\\*\" $dir -Force",
+      "Remove-Item \"$env:TEMP\\cate-app\" -Recurse -Force"
+    ]
+  },
+  "bin": "Cate.exe",
+  "shortcuts": [
+    [
+      "Cate.exe",
+      "Cate"
+    ]
+  ],
+  "notes": [
+    "Builds from source on install (takes several minutes): needs Visual Studio Build Tools (C++ workload) and Python for native modules (node-pty).",
+    "node-pty is built with its Spectre mitigation switched off, so the Spectre-mitigated libs are not required.",
+    "electron-builder needs symlink permission: enable Windows Developer Mode or install from an elevated shell."
+  ]
+}
