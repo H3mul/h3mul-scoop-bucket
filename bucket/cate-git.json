@@ -1,5 +1,5 @@
 {
-  "version": "2.0.5",
+  "version": "2.0.5-19ea139",
   "description": "Cate - an infinite zoomable canvas IDE (built from source, h3mul fork)",
   "homepage": "https://github.com/h3mul/cate",
   "license": "MIT",
@@ -7,15 +7,16 @@
     "git",
     "versions/nodejs22"
   ],
-  "url": "https://github.com/h3mul/cate/archive/refs/heads/main.zip#/cate-main.zip",
-  "extract_dir": "cate-main",
+  "url": "https://github.com/h3mul/cate/archive/19ea139e49951f536caa1cdd5d0ff3ad209298e5.zip#/cate-19ea139e49951f536caa1cdd5d0ff3ad209298e5.zip",
+  "extract_dir": "cate-19ea139e49951f536caa1cdd5d0ff3ad209298e5",
   "checkver": {
     "url": "https://github.com/h3mul/cate/commits/main.atom",
-    "regex": "(?s)<id>.*?Commit/(?<sha>[0-9a-f]+)</id>"
+    "regex": "(?s)<id>.*?Commit/(?<short>[0-9a-f]{7})(?<rest>[0-9a-f]+)</id>",
+    "replace": "2.0.5-${short}"
   },
   "autoupdate": {
-    "url": "https://github.com/h3mul/cate/archive/$matchSha.zip#/cate-$matchSha.zip",
-    "extract_dir": "cate-$matchSha"
+    "url": "https://github.com/h3mul/cate/archive/$matchShort$matchRest.zip#/cate-$matchShort$matchRest.zip",
+    "extract_dir": "cate-$matchShort$matchRest"
   },
   "installer": {
     "script": [
