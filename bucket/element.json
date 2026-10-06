@@ -1,0 +1,30 @@
+{
+  "version": "1.2.0",
+  "description": "Element - audio plugin host (built from source)",
+  "homepage": "https://github.com/kushview/element",
+  "license": "GPL-3.0-or-later",
+  "url": "https://github.com/kushview/element",
+  "depends": [
+    "git",
+    "cmake",
+    "boost"
+  ],
+  "pre_install": [
+    "$src = \"$env:TEMP\\element-src\"",
+    "if (Test-Path $src) { Remove-Item $src -Recurse -Force }",
+    "git clone --depth 1 --branch $version --recurse-submodules --shallow-submodules https://github.com/kushview/element $src; if ($LASTEXITCODE) { throw 'git clone failed' }",
+    "$boost = (scoop prefix boost)",
+    "cmake -S $src -DBOOST_ROOT=\"$boost\" -DBoost_INCLUDE_DIR=\"$boost\" -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl -DCMAKE_BUILD_TYPE=Release -DELEMENT_ENABLE_ASIO=ON -DELEMENT_BUILD_PLUGINS=ON -B \"$src\\build\"; if ($LASTEXITCODE) { throw 'cmake configure failed' }",
+    "cmake --build \"$src\\build\" --config Release; if ($LASTEXITCODE) { throw 'cmake build failed' }",
+    "cmake --install \"$src\\build\" --config Release --prefix $dir; if ($LASTEXITCODE) { throw 'cmake install failed' }",
+    "Remove-Item $src -Recurse -Force"
+  ],
+  "bin": "bin\\Element.exe",
+  "shortcuts": [
+    [
+      "bin\\Element.exe",
+      "Element"
+    ]
+  ],
+  "notes": "Built from source on install (can take a while): needs Visual Studio Build Tools (C++ workload)."
+}
