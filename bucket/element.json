@@ -3,7 +3,7 @@
   "description": "Element - audio plugin host (built from source)",
   "homepage": "https://github.com/kushview/element",
   "license": "GPL-3.0-or-later",
-  "url": "https://github.com/kushview/element",
+  "url": "https://raw.githubusercontent.com/kushview/element/1.2.0/README.md",
   "depends": [
     "git",
     "cmake",
@@ -26,5 +26,9 @@
       "Element"
     ]
   ],
-  "notes": "Built from source on install (can take a while): needs Visual Studio Build Tools (C++ workload)."
+  "notes": "Built from source on install (can take a while): needs Visual Studio Build Tools (C++ workload).",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://raw.githubusercontent.com/kushview/element/$version/README.md"
+  }
 }
