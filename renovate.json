@@ -1,13 +1,32 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "enabledManagers": ["custom.regex"],
+  "enabledManagers": [
+    "custom.regex"
+  ],
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/^bucket/element\\.json$/"],
-      "matchStrings": ["\"version\": \"(?<currentValue>[^\"]+)\""],
+      "managerFilePatterns": [
+        "/^bucket/element\\.json$/"
+      ],
+      "matchStrings": [
+        "\"version\": \"(?<currentValue>[^\"]+)\""
+      ],
       "depNameTemplate": "kushview/element",
       "datasourceTemplate": "github-releases",
+      "versioningTemplate": "loose"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^bucket/cate\\.json$/"
+      ],
+      "matchStrings": [
+        "\"version\": \"(?<currentValue>[^\"]+)\""
+      ],
+      "depNameTemplate": "0-AI-UG/cate",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.+)$",
       "versioningTemplate": "loose"
     }
   ]
