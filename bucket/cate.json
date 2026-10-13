@@ -15,6 +15,7 @@
             "Cate"
         ]
     ],
+    "conflicts": "cate-nightly",
     "checkver": "github",
     "autoupdate": {
         "architecture": {

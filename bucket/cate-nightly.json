@@ -32,6 +32,7 @@
       "Cate"
     ]
   ],
+  "conflicts": "cate",
   "notes": [
     "Nightly: every install builds the latest commit of h3mul/cate main from source (several minutes). Rebuild with: scoop update cate-nightly -f",
     "Needs Visual Studio Build Tools (C++ workload) and Python for native modules (node-pty); node-pty is built with Spectre mitigation off, so Spectre libs are not required.",
