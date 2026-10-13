@@ -1,8 +1,8 @@
 {
   "version": "nightly",
-  "description": "Cate - an infinite zoomable canvas IDE (nightly: built from the latest 0-AI-UG/cate main on every install)",
-  "homepage": "https://github.com/0-AI-UG/cate",
-  "url": "https://raw.githubusercontent.com/0-AI-UG/cate/main/README.md",
+  "description": "Cate - an infinite zoomable canvas IDE (nightly: built from the latest h3mul/cate main on every install)",
+  "homepage": "https://github.com/h3mul/cate",
+  "url": "https://raw.githubusercontent.com/h3mul/cate/main/README.md",
   "license": "MIT",
   "depends": [
     "git",
@@ -12,7 +12,7 @@
     "$env:CSC_IDENTITY_AUTO_DISCOVERY = 'false'",
     "$src = \"$env:TEMP\\cate-src\"",
     "if (Test-Path $src) { Remove-Item $src -Recurse -Force }",
-    "git clone --depth 1 https://github.com/0-AI-UG/cate $src; if ($LASTEXITCODE) { throw 'git clone failed' }",
+    "git clone --depth 1 https://github.com/h3mul/cate $src; if ($LASTEXITCODE) { throw 'git clone failed' }",
     "Push-Location $src",
     "$sha = git rev-parse --short HEAD",
     "npm ci; if ($LASTEXITCODE) { throw 'npm ci failed' }",
@@ -23,7 +23,7 @@
     "Get-ChildItem $dir -Force | Remove-Item -Recurse -Force",
     "Move-Item \"$src\\release\\win-unpacked\\*\" $dir -Force",
     "Remove-Item $src -Recurse -Force",
-    "Write-Host \"Built Cate from 0-AI-UG/cate@$sha\" -ForegroundColor Green"
+    "Write-Host \"Built Cate from h3mul/cate@$sha\" -ForegroundColor Green"
   ],
   "bin": "Cate.exe",
   "shortcuts": [
@@ -33,7 +33,7 @@
     ]
   ],
   "notes": [
-    "Nightly: every install builds the latest commit of 0-AI-UG/cate main from source (several minutes). Rebuild with: scoop update cate-nightly -f",
+    "Nightly: every install builds the latest commit of h3mul/cate main from source (several minutes). Rebuild with: scoop update cate-nightly -f",
     "Needs Visual Studio Build Tools (C++ workload) and Python for native modules (node-pty); node-pty is built with Spectre mitigation off, so Spectre libs are not required.",
     "electron-builder needs symlink permission: enable Windows Developer Mode or install from an elevated shell."
   ]
